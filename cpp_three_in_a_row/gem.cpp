@@ -8,6 +8,9 @@ using namespace sf;
 
 Gem::Gem()
 {
+	this->loadTexture(this->setColor());
+	this->sprite.setTexture(this->main_texture);
+	this->sprite.setScale(1.9675f, 1.9675f);
 }
 
 Gem::~Gem()

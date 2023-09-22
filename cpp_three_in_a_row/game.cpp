@@ -105,9 +105,9 @@ void Game::initialize()
 	for (int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
 		{
-			gem[i][j]->loadTexture(gem[i][j]->setColor());
-			gem[i][j]->getSprite().setTexture(gem[i][j]->getTexture());
-			gem[i][j]->getSprite().setScale(1.9675f, 1.9675f);
+			//gem[i][j]->loadTexture(gem[i][j]->setColor());
+			//gem[i][j]->getSprite().setTexture(gem[i][j]->getTexture());
+			//gem[i][j]->getSprite().setScale(1.9675f, 1.9675f);
 			gem[i][j]->getSprite().setPosition(Vector2f(245.f + (float)j * 63.f, (float)i * 63.f));
 		}
 }
