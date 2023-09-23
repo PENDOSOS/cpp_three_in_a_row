@@ -217,10 +217,9 @@ void Game::destroyGems(vector<Vector2i> coords)
 
 void Game::changeColors(vector<Vector2i> coords)
 {
-	if (coords.size() == 2)
-	{
-
-	}
+	gem[coords[1].y][coords[1].x]->updateSprite(gem[coords[0].y][coords[0].x]->getColor());
+	if (coords.size() == 3)
+		gem[coords[2].y][coords[2].x]->updateSprite(gem[coords[0].y][coords[0].x]->getColor());
 }
 
 void Game::replaceDestroyed()
@@ -264,7 +263,8 @@ void Game::moveGemsDown()
 
 void Game::spawnBonus(Vector2i gem)
 {
-	Bonus* bonus = new Bomb;
-	destroyGems(bonus->useBonus(gem));
+	Bonus* bonus = new Marker;
+	//destroyGems(bonus->useBonus(gem));
+	changeColors(bonus->useBonus(gem));
 	delete bonus;
 }

@@ -58,6 +58,39 @@ String Gem::setColor()
 	}
 }
 
+String Gem::setColor(int new_color) 
+{
+	switch (new_color)
+	{
+	case red:
+		color = red;
+		return "gems_assets/red.png";
+		break;
+	case green:
+		color = green;
+		return "gems_assets/green.png";
+		break;
+	case blue:
+		color = blue;
+		return "gems_assets/blue.png";
+		break;
+	case orange:
+		color = orange;
+		return "gems_assets/orange.png";
+		break;
+	case yellow:
+		color = yellow;
+		return "gems_assets/yellow.png";
+		break;
+	case cyan:
+		color = cyan;
+		return "gems_assets/cyan.png";
+		break;
+	default:
+		break;
+	}
+}
+
 int Gem::getColor()
 {
 	return color;
@@ -66,6 +99,12 @@ int Gem::getColor()
 Sprite& Gem::getSprite()
 {
 	return sprite;
+}
+
+void Gem::updateSprite(int new_color)
+{
+	this->main_texture.loadFromFile(this->setColor(new_color));
+	this->sprite.setTexture(this->main_texture);
 }
 
 Texture& Gem::getTexture()

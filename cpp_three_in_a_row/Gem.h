@@ -20,9 +20,11 @@ public:
 	//void loadTexture(String const& dir); 
 
 	String setColor();
+	String setColor(int new_color);
 	int getColor();
 
 	Sprite& getSprite();
+	void updateSprite(int new_color);
 
 	Texture& getTexture();
 
