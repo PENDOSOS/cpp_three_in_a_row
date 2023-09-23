@@ -14,7 +14,7 @@ public:
 
 	virtual ~Bonus() = default;
 
-	virtual vector<Vector2i> useBonus(Vector2i) = 0;
+	virtual vector<Vector2i> useBonus(Vector2i gem) = 0;
 
 	Texture texture;
 
@@ -29,7 +29,7 @@ public:
 	~Bomb() override = default;
 
 	vector<Vector2i> coords;
-	vector<Vector2i> useBonus(Vector2i) override; // возвращает массив с пятью парами координат, чтобы удалить гемы на этих координатах.
+	vector<Vector2i> useBonus(Vector2i gem) override; // возвращает массив с пятью парами координат, чтобы удалить гемы на этих координатах.
 
 };
 
@@ -40,5 +40,5 @@ public:
 	Marker();
 	~Marker() override = default;
 
-	vector<Vector2i> useBonus(Vector2i) override; // возвращает массив с двумя парами координат несоседних гемов в окрестности
+	vector<Vector2i> useBonus(Vector2i gem) override; // возвращает массив с двумя парами координат несоседних гемов в окрестности
 };

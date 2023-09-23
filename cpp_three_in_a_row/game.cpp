@@ -149,7 +149,10 @@ void Game::checkHorizontal()
 				}
 			}
 			else
+			{
 				was_found_combination = true;
+				was_change = true;
+			}
 			j = j + length;
 		}
 	}
@@ -189,7 +192,10 @@ void Game::checkVertical()
 				}
 			}
 			else
+			{
 				was_found_combination = true;
+				was_change = true;
+			}
 			i = i + length;
 		}
 	}
@@ -261,10 +267,20 @@ void Game::moveGemsDown()
 	was_found_combination = false;
 }
 
-void Game::spawnBonus(Vector2i gem)
+void Game::spawnBonus(Vector2i gem, int type)
 {
-	Bonus* bonus = new Marker;
-	//destroyGems(bonus->useBonus(gem));
-	changeColors(bonus->useBonus(gem));
+	Bonus* bonus = nullptr;
+
+	if (type == 0)
+	{
+		bonus = new Marker;
+		changeColors(bonus->useBonus(gem));
+	}
+	else if (type == 1)
+	{
+		bonus = new Bomb;
+		destroyGems(bonus->useBonus(gem));
+	}
+	window.draw(bonus->sprite);
 	delete bonus;
 }

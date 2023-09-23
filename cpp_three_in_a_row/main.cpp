@@ -52,12 +52,18 @@ int main()
 			}
 
 		game.destroyGems();
-
-		if (Keyboard::isKeyPressed(Keyboard::Space))
-			game.spawnBonus({1, 1});
+		if (game.was_found_combination && (rand() & 2) % 10 == 0)
+			game.spawnBonus(game.chosen_gem_1, 1);
 
 		game.moveGemsDown();
 		game.replaceDestroyed();
+
+		if (game.was_change && (rand() & 2) % 10 == 0)
+		{
+			game.spawnBonus(game.chosen_gem_2, 0);
+		}
+
+		game.was_change = false;
 
 		game.window.display();		
 	}
