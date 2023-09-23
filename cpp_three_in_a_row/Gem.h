@@ -12,12 +12,12 @@ class Gem
 public:
 	Gem();
 
-	~Gem();
+	~Gem() = default;
 
 	void moveDown();
 	void moveUp();
 
-	void loadTexture(const String& dir);
+	//void loadTexture(String const& dir); 
 
 	String setColor();
 	int getColor();

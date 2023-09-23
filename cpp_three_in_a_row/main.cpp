@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include "Gem.h"
 #include "Game.h"
 
 using namespace sf;
@@ -53,6 +52,10 @@ int main()
 			}
 
 		game.destroyGems();
+
+		if (Keyboard::isKeyPressed(Keyboard::Space))
+			game.spawnBonus({1, 1});
+
 		game.moveGemsDown();
 		game.replaceDestroyed();
 

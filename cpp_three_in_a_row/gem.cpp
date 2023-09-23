@@ -4,17 +4,15 @@
 #include <string>
 #include "Gem.h"
 
+
 using namespace sf;
 
 Gem::Gem()
 {
-	this->loadTexture(this->setColor());
+	this->choise_texture.loadFromFile("gems_assets/white.png");
+	this->main_texture.loadFromFile(this->setColor());
 	this->sprite.setTexture(this->main_texture);
 	this->sprite.setScale(1.9675f, 1.9675f);
-}
-
-Gem::~Gem()
-{
 }
 
 void Gem::moveDown()
@@ -25,12 +23,6 @@ void Gem::moveDown()
 void Gem::moveUp()
 {
 	sprite.move(Vector2f(0.f, -63.f));
-}
-
-void Gem::loadTexture(const String& dir)
-{
-	main_texture.loadFromFile(dir);
-	choise_texture.loadFromFile("gems_assets/white.png");
 }
 
 String Gem::setColor()

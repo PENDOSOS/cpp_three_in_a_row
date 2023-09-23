@@ -105,9 +105,6 @@ void Game::initialize()
 	for (int i = 0; i < 10; i++)
 		for (int j = 0; j < 10; j++)
 		{
-			//gem[i][j]->loadTexture(gem[i][j]->setColor());
-			//gem[i][j]->getSprite().setTexture(gem[i][j]->getTexture());
-			//gem[i][j]->getSprite().setScale(1.9675f, 1.9675f);
 			gem[i][j]->getSprite().setPosition(Vector2f(245.f + (float)j * 63.f, (float)i * 63.f));
 		}
 }
@@ -210,6 +207,14 @@ void Game::destroyGems()
 		}
 }
 
+void Game::destroyGems(vector<Vector2i> coords)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		gem[coords[i].y][coords[i].x].reset();
+	}
+}
+
 void Game::replaceDestroyed()
 {
 	unique_ptr<Gem> new_gem;
@@ -220,9 +225,6 @@ void Game::replaceDestroyed()
 			{
 				new_gem = make_unique<Gem>();
 				gem[i][j] = move(new_gem);
-				gem[i][j]->loadTexture(gem[i][j]->setColor());
-				gem[i][j]->getSprite().setTexture(gem[i][j]->getTexture());
-				gem[i][j]->getSprite().setScale(1.9675f, 1.9675f);
 				gem[i][j]->getSprite().setPosition(Vector2f(245.f + (float)j * 63.f, (float)i * 63.f));
 			}
 		}
@@ -250,4 +252,10 @@ void Game::moveGemsDown()
 			}
 		}
 	was_found_combination = false;
+}
+
+void Game::spawnBonus(Vector2i gem)
+{
+	Bonus* bonus = new Bomb;
+	destroyGems(bonus->useBonus(gem));
 }
