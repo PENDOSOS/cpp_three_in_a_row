@@ -23,8 +23,8 @@ void Game::unchooseGem()
 	{
 		gem[chosen_gem_1.y][chosen_gem_1.x]->switchToNormal();
 		exist_choosen_gem = false;
-		chosen_gem_1.x = -1;
-		chosen_gem_1.y = -1;
+		chosen_gem_1.x = 0;
+		chosen_gem_1.y = 0;
 	}
 }
 
@@ -215,6 +215,14 @@ void Game::destroyGems(vector<Vector2i> coords)
 	}
 }
 
+void Game::changeColors(vector<Vector2i> coords)
+{
+	if (coords.size() == 2)
+	{
+
+	}
+}
+
 void Game::replaceDestroyed()
 {
 	unique_ptr<Gem> new_gem;
@@ -258,4 +266,5 @@ void Game::spawnBonus(Vector2i gem)
 {
 	Bonus* bonus = new Bomb;
 	destroyGems(bonus->useBonus(gem));
+	delete bonus;
 }

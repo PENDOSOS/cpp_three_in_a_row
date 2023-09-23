@@ -19,8 +19,6 @@ public:
 	Texture texture;
 
 	Sprite sprite;
-
-	vector<Vector2i> coords;
 };
 
 class Bomb : public Bonus
@@ -30,6 +28,7 @@ public:
 	Bomb();
 	~Bomb() override = default;
 
+	vector<Vector2i> coords;
 	vector<Vector2i> useBonus(Vector2i) override; // возвращает массив со всеми возможными парами координат, чтобы рандомно выбирать четыре из них.
 
 };

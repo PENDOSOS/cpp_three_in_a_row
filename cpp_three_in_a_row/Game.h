@@ -22,8 +22,6 @@ public:
 
 	vector<vector<unique_ptr<Gem>>> gem;
 
-	//unique_ptr<Bonus> bonus;
-
 	Vector2i chosen_gem_1;
 	Vector2i chosen_gem_2;
 
@@ -46,6 +44,7 @@ public:
 
 	void destroyGems();
 	void destroyGems(vector<Vector2i> coords);
+	void changeColors(vector<Vector2i> coords);
 
 	void replaceDestroyed();
 

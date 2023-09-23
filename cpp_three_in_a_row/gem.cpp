@@ -4,7 +4,6 @@
 #include <string>
 #include "Gem.h"
 
-
 using namespace sf;
 
 Gem::Gem()
