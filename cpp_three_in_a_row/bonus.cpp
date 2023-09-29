@@ -20,7 +20,7 @@ Bomb::Bomb()
 	}
 }
 
-vector<Vector2i> Bomb::useBonus(Vector2i gem)
+vector<Vector2i> Bomb::useBonus(Vector2i const& gem)
 {
 	vector<Vector2i> chosen_gems;
 	int a = 0;
@@ -42,7 +42,7 @@ Marker::Marker()
 	this->sprite.setScale(1.9675f, 1.9675f);
 }
 
-vector<Vector2i> Marker::useBonus(Vector2i gem)
+vector<Vector2i> Marker::useBonus(Vector2i const& gem)
 {
 	vector<Vector2i> chosen_gems;
 	chosen_gems.push_back(gem);
