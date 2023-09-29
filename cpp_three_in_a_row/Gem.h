@@ -17,8 +17,6 @@ public:
 	void moveDown();
 	void moveUp();
 
-	//void loadTexture(String const& dir); 
-
 	String setColor();
 	String setColor(int new_color);
 	int getColor();

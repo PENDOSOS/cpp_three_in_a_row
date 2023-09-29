@@ -18,6 +18,8 @@ class Game
 {
 public:
 
+	Game();
+
 	RenderWindow window;
 
 	vector<vector<unique_ptr<Gem>>> gem;
@@ -26,7 +28,6 @@ public:
 	Vector2i chosen_gem_2;
 
 	bool exist_choosen_gem = false;
-	bool was_change = false;
 	bool was_found_combination = false;
 
 	void chooseGem(Vector2i position);
@@ -50,5 +51,11 @@ public:
 
 	void moveGemsDown();
 
-	void spawnBonus(Vector2i gem, int type);
+	void spawnBonus(Vector2i gem);
+
+	int score = 0;
+	int last_score = 0;
+	Font font;
+	Text text;
+	void updateScore();
 };

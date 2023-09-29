@@ -14,8 +14,6 @@ int main()
 
 	Game game;
 
-	game.initialize();
-
 	while (game.window.isOpen())
 	{
 		Event event;
@@ -28,6 +26,8 @@ int main()
 		game.window.clear(Color::Black);
 
 		game.draw();
+
+		game.spawnBonus(game.chosen_gem_2);
 
 		game.checkHorizontal();
 		game.checkVertical();
@@ -52,19 +52,10 @@ int main()
 			}
 
 		game.destroyGems();
-		if (game.was_found_combination && (rand() & 2) % 10 == 0)
-			game.spawnBonus(game.chosen_gem_1, 1);
-
 		game.moveGemsDown();
 		game.replaceDestroyed();
-
-		if (game.was_change && (rand() & 2) % 10 == 0)
-		{
-			game.spawnBonus(game.chosen_gem_2, 0);
-		}
-
-		game.was_change = false;
-
+		game.updateScore();
+		game.window.draw(game.text);
 		game.window.display();		
 	}
 

@@ -1,5 +1,17 @@
 #include "Game.h"
 
+Game::Game()
+{
+	font.loadFromFile("gems_assets/SamuraiBlast-YznGj.ttf");
+	text.setFont(font);
+	text.setString("Points: 0");
+	text.setCharacterSize(24);
+	text.setFillColor(sf::Color::White);
+	text.setPosition(900, 0);
+
+	initialize();
+}
+
 void Game::chooseGem(Vector2i position)
 {
 	if (position.x > 0 )
@@ -151,7 +163,6 @@ void Game::checkHorizontal()
 			else
 			{
 				was_found_combination = true;
-				was_change = true;
 			}
 			j = j + length;
 		}
@@ -194,7 +205,6 @@ void Game::checkVertical()
 			else
 			{
 				was_found_combination = true;
-				was_change = true;
 			}
 			i = i + length;
 		}
@@ -209,6 +219,7 @@ void Game::destroyGems()
 			if (gem[i][j]->getStatus())
 			{
 				gem[i][j].reset();
+				score += 10;
 			}
 		}
 }
@@ -219,6 +230,8 @@ void Game::destroyGems(vector<Vector2i> coords)
 	{
 		gem[coords[i].y][coords[i].x].reset();
 	}
+	moveGemsDown();
+	replaceDestroyed();
 }
 
 void Game::changeColors(vector<Vector2i> coords)
@@ -267,20 +280,30 @@ void Game::moveGemsDown()
 	was_found_combination = false;
 }
 
-void Game::spawnBonus(Vector2i gem, int type)
+void Game::spawnBonus(Vector2i gem)
 {
 	Bonus* bonus = nullptr;
 
-	if (type == 0)
+	if (last_score != score && rand() % 100 > 70)
 	{
-		bonus = new Marker;
-		changeColors(bonus->useBonus(gem));
+		int type = rand() % 2;
+		if (type == 0)
+		{
+			bonus = new Marker;
+			changeColors(bonus->useBonus(gem));
+		}
+		else if (type == 1)
+		{
+			bonus = new Bomb;
+			destroyGems(bonus->useBonus(gem));
+		}
+		window.draw(bonus->sprite);
+		last_score = score;
 	}
-	else if (type == 1)
-	{
-		bonus = new Bomb;
-		destroyGems(bonus->useBonus(gem));
-	}
-	window.draw(bonus->sprite);
 	delete bonus;
+}
+
+void Game::updateScore()
+{
+	text.setString("Points " + to_string(score));
 }
